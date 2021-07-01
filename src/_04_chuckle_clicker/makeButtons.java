@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class makeButtons implements ActionListener {
@@ -30,9 +31,11 @@ public class makeButtons implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == joke) {
-			
+			JOptionPane.showMessageDialog(null, "Did you hear about the claustrophobic astronaut?");
+			JOptionPane.showMessageDialog(null, "He just needed a little space.");
 		} else {
-			
+			JOptionPane.showMessageDialog(null, "Why does Waldo wear stripes?");
+			JOptionPane.showMessageDialog(null, "Because he doesn’t want to be spotted.");
 		}
 	}
 }
