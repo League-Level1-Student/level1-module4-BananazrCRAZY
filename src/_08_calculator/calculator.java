@@ -11,61 +11,69 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class calculator implements ActionListener {
-	JFrame f = new JFrame("Simple Caluculator");
-	JPanel p = new JPanel();
+	JFrame frame = new JFrame("Simple Caluculator");
+	JPanel panel = new JPanel();
 	JButton add = new JButton("Add");
 	JButton sub = new JButton("Sub");
 	JButton mult = new JButton("Mult");
 	JButton div = new JButton("Div");
 	JTextField num1 = new JTextField();
 	JTextField num2 = new JTextField();
-	JLabel ans = new JLabel();
+	JLabel ans = new JLabel("ANSWER");
+	int n1int, n2int, ansInt;
 	
 	public void calculator() {
-		f.add(p);
-		f.setVisible(true);
-		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		
-		p.add(num1);
-		p.add(num2);
-		p.add(add);
-		p.add(sub);
-		p.add(mult);
-		p.add(div);
-		p.add(ans);
+		panel.add(num1);
+		panel.add(num2);
+		panel.add(add);
+		panel.add(sub);
+		panel.add(mult);
+		panel.add(div);
+		panel.add(ans);
 		
 		add.addActionListener(this);
 		sub.addActionListener(this);
 		mult.addActionListener(this);
 		div.addActionListener(this);
 		
-		f.pack();
+		frame.pack();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == add) {
-
+			conToInt();
+			ansInt = n1int + n2int;
+			conToString();
 		} else if (e.getSource() == sub) {
-
+			conToInt();
+			ansInt = n1int - n2int;
+			conToString();
 		} else if (e.getSource() == mult) {
-
+			conToInt();
+			ansInt = n1int * n2int;
+			conToString();
 		} else if (e.getSource() == div) {
-			
+			conToInt();
+			ansInt = n1int / n2int;
+			conToString();
 		}
 	}
-
-/*
-	int conToInt(JTextField JText) {
-		String n = JText.getText();
-		int num = Integer.parseInt(n);
-		return num;
+	
+	public void conToInt() {
+		String n1  = num1.getText();
+		String n2 = num2.getText();
+		n1int = Integer.parseInt(n1);
+		n2int = Integer.parseInt(n2);
 	}
 	
-	String conToString(int ansI) {
-		String ansS = Integer.toString(ansI);
-		return ansS;
+	public void conToString() {
+		String s = ansInt + "";
+		ans.setText(s);
 	}
-*/
 }
