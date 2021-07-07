@@ -7,6 +7,7 @@ import javax.management.Query;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import twitter4j.QueryResult;
@@ -17,26 +18,26 @@ import twitter4j.auth.AccessToken;
 public class latestTweet implements ActionListener {
 	JFrame f = new JFrame("The Amazing Tweet Retriever");
 	JPanel p = new JPanel();
-	JTextField tf = new JTextField();
+	JTextArea tf = new JTextArea();
 	JButton b = new JButton("Search the Twitterverse");
 	
-	public void latestTweet() {
+	public latestTweet() {
 		f.setVisible(true);
 		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 		f.add(p);
+		f.setSize(500, 75);
 		
 		p.add(tf);
 		p.add(b);
 		
 		b.addActionListener(this);
-		
-		f.pack();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("Tweet Tweet");
+		getLatestTweet(tf.getText());
 	}
 
 

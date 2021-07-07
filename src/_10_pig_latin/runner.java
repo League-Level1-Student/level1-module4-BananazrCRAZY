@@ -1,7 +1,7 @@
-package _09_latest_tweet;
+package _10_pig_latin;
 
 public class runner {
 	public static void main(String[] args) {
-		latestTweet lt = new latestTweet();
+		PigLatin pigLat = new PigLatin();
 	}
 }
