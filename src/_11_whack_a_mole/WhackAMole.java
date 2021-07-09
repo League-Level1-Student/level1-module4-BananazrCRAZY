@@ -1,5 +1,6 @@
 package _11_whack_a_mole;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -35,6 +36,9 @@ public class WhackAMole implements ActionListener {
 	JButton b22 = new JButton("         ");
 	JButton b23 = new JButton("         ");
 	Random ran = new Random();
+	JButton mole = new JButton("mole!");
+	Point poi = new Point();
+	int x, y;
 	public WhackAMole() {
 		f.setVisible(true);
 		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
@@ -93,10 +97,10 @@ public class WhackAMole implements ActionListener {
 	}
 	
 	public void drawButtons() {
-		JButton mole = new JButton("mole!");
+		f.setVisible(true);
+		
 		p.add(mole);
 		mole.addActionListener(this);
-		
 		
 		switch (ran.nextInt(24-1)) {
 		case 1:
@@ -104,6 +108,8 @@ public class WhackAMole implements ActionListener {
 			System.out.println("1");
 			break;
 		case 2:
+			//poi = b2.getLocation();
+			//mole.setLocation(poi);
 			System.out.println("2");
 			break;
 		case 3:
@@ -179,5 +185,6 @@ public class WhackAMole implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		f.dispose();
+		drawButtons();
 	}
 }
