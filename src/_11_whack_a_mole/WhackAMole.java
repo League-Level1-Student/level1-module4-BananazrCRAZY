@@ -1,12 +1,16 @@
 package _11_whack_a_mole;
 
+import java.applet.AudioClip;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Random;
 
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class WhackAMole implements ActionListener {
@@ -35,15 +39,16 @@ public class WhackAMole implements ActionListener {
 	JButton b21 = new JButton("         ");
 	JButton b22 = new JButton("         ");
 	JButton b23 = new JButton("         ");
+	JButton b24 = new JButton("         ");
 	Random ran = new Random();
-	JButton mole = new JButton("mole!");
 	Point poi = new Point();
-	int x, y;
+	int score, miss;
+	Date timeStart = new Date();
 	public WhackAMole() {
 		f.setVisible(true);
 		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 		f.add(p);
-		f.setSize(230, 300);
+		f.setBounds(230, 300, 230, 300);
 	
 		p.add(b1);
 		p.add(b2);
@@ -68,6 +73,7 @@ public class WhackAMole implements ActionListener {
 		p.add(b21);
 		p.add(b22);
 		p.add(b23);
+		p.add(b24);
 		
 		b1.addActionListener(this);
 		b2.addActionListener(this);
@@ -92,99 +98,168 @@ public class WhackAMole implements ActionListener {
 		b21.addActionListener(this);
 		b22.addActionListener(this);
 		b23.addActionListener(this);
-
+		b24.addActionListener(this);
+		
 		drawButtons();
 	}
 	
 	public void drawButtons() {
-		f.setVisible(true);
-		
-		p.add(mole);
-		mole.addActionListener(this);
-		
-		switch (ran.nextInt(24-1)) {
+		RestText();
+		switch (ran.nextInt(24)+1) {
 		case 1:
-			
-			System.out.println("1");
+			b1.setText("mole");
 			break;
 		case 2:
-			//poi = b2.getLocation();
-			//mole.setLocation(poi);
-			System.out.println("2");
+			b2.setText("mole");
 			break;
 		case 3:
-			System.out.println("3");
+			b3.setText("mole");
 			break;
 		case 4:
-			System.out.println("4");
+			b4.setText("mole");
 			break;
 		case 5:
-			System.out.println("5");
+			b5.setText("mole");
 			break;
 		case 6:
-			System.out.println("6");
+			b6.setText("mole");
 			break;
 		case 7:
-			System.out.println("7");
+			b7.setText("mole");
 			break;
 		case 8:
-			System.out.println("8");
+			b8.setText("mole");
 			break;
 		case 9:
-			System.out.println("9");
+			b9.setText("mole");
 			break;
 		case 10:
-			System.out.println("10");
+			b10.setText("mole");
 			break;
 		case 11:
-			System.out.println("11");
+			b11.setText("mole");
 			break;
 		case 12:
-			System.out.println("12");
+			b12.setText("mole");
 			break;
 		case 13:
-			System.out.println("13");
+			b13.setText("mole");
 			break;
 		case 14:
-			System.out.println("14");
+			b14.setText("mole");
 			break;
 		case 15:
-			System.out.println("15");
+			b15.setText("mole");
 			break;
 		case 16:
-			System.out.println("16");
+			b16.setText("mole");
 			break;
 		case 17:
-			System.out.println("17");
+			b17.setText("mole");
 			break;
 		case 18:
-			System.out.println("18");
+			b18.setText("mole");
 			break;
 		case 19:
-			System.out.println("19");
+			b19.setText("mole");
 			break;
 		case 20:
-			System.out.println("20");
+			b20.setText("mole");
 			break;
 		case 21:
-			System.out.println("21");
+			b21.setText("mole");
 			break;
 		case 22:
-			System.out.println("22");
+			b22.setText("mole");
 			break;
 		case 23:
-			System.out.println("23");
+			b23.setText("mole");
 			break;
 		case 24:
-			System.out.println("24");
+			b24.setText("mole");
 			break;
 		}
+		f.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if (((JButton) e.getSource()).getText().equalsIgnoreCase("mole")) {
+			score++;
+			System.out.println("Score: " + score);
+			if (score == 10) {
+				endGame(timeStart, score);
+			}
+		} else {
+			miss++;
+			speak("You missed");
+			if (miss == 3) {
+				System.out.println("GAME OVER");
+				speak("GAME OVER");
+			}
+		}
+		
 		f.dispose();
 		drawButtons();
 	}
+	
+	public void RestText() {
+		b1.setText("         ");
+		b2.setText("         ");
+		b3.setText("         ");
+		b4.setText("         ");
+		b5.setText("         ");
+		b5.setText("         ");
+		b6.setText("         ");
+		b7.setText("         ");
+		b8.setText("         ");
+		b9.setText("         ");
+		b10.setText("         ");
+		b11.setText("         ");
+		b12.setText("         ");
+		b13.setText("         ");
+		b14.setText("         ");
+		b15.setText("         ");
+		b16.setText("         ");
+		b17.setText("         ");
+		b18.setText("         ");
+		b19.setText("         ");
+		b20.setText("         ");
+		b21.setText("         ");
+		b22.setText("         ");
+		b23.setText("         ");
+		b24.setText("         ");
+		
+	}
+	
+	static void speak(String words) {
+        if( System.getProperty( "os.name" ).contains( "Windows" ) ) {
+            String cmd = "PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('"
+                    + words + "');\"";
+            try {
+                Runtime.getRuntime().exec( cmd ).waitFor();
+            } catch( Exception e ) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                Runtime.getRuntime().exec( "say " + words ).waitFor();
+            } catch( Exception e ) {
+                e.printStackTrace();
+            }
+        }
+    }
+	
+	private void endGame(Date timeAtStart, int molesWhacked) { 
+	    Date timeAtEnd = new Date();
+	    JOptionPane.showMessageDialog(null, "Your whack rate is "
+	            + ((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000.00 / molesWhacked)
+	                  + " moles per second.");
+	}
+	
+//	private void playSound(String fileName) { 
+//		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
+//		sound.play();
+//	}
 }
