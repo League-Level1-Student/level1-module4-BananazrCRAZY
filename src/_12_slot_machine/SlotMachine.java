@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,7 +21,8 @@ public class SlotMachine implements ActionListener {
 	JLabel s3 = new JLabel();
 	JButton b = new JButton("Spin");
 	JLabel win = new JLabel();
-	public SlotMachine() {
+	
+	public SlotMachine() throws MalformedURLException {
 		f.setVisible(true);
 		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 		f.add(p);
@@ -31,12 +33,49 @@ public class SlotMachine implements ActionListener {
 		p.add(b);
 		
 		b.addActionListener(this);
+		
+		f.pack();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		f.dispose();
+		SlotSpin();
+		f.setVisible(true);
+	}
+	
+	public void SlotSpin() throws MalformedURLException {
+		for (int i = 0; i < 3; i++) {
+			Random ran = new Random();
+			int num = ran.nextInt(3);
+			
+			if (i == 0) {
+				if (num == 0) {
+					s1 = createLabelImage("Red7.jpg");
+				} else if (num == 1) {
+					s1 = createLabelImage("bell.jpg");
+				} else {
+					s1 = createLabelImage("cherry.jpg");
+				}
+			} else if (i == 1) {
+				if (num == 0) {
+					s2 = createLabelImage("Red7.jpg");
+				} else if (num == 1) {
+					s2 = createLabelImage("bell.jpg");
+				} else {
+					s2 = createLabelImage("cherry.jpg");
+				}
+			} else {
+				if (num == 0) {
+					s3 = createLabelImage("Red7.jpg");
+				} else if (num == 1) {
+					s3 = createLabelImage("bell.jpg");
+				} else {
+					s3 = createLabelImage("cherry.jpg");
+				}
+			}
+		}
 	}
 
 	private JLabel createLabelImage(String fileName) throws MalformedURLException{

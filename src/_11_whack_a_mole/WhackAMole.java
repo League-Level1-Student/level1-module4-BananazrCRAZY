@@ -190,6 +190,7 @@ public class WhackAMole implements ActionListener {
 			System.out.println("Score: " + score);
 			if (score == 10) {
 				endGame(timeStart, score);
+				System.exit(0);
 			}
 		} else {
 			miss++;
@@ -197,6 +198,7 @@ public class WhackAMole implements ActionListener {
 			if (miss == 3) {
 				System.out.println("GAME OVER");
 				speak("GAME OVER");
+				System.exit(0);
 			}
 		}
 		
